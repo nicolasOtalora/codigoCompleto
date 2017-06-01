@@ -48,10 +48,10 @@ public class BarServlet extends HttpServlet {
         ArrayList datos = dao.consultaBarras();
         
         
-        for (int i = 0; i < datos.size(); i++) {
+        //for (int i = 0; i < datos.size(); i++) {
         
         dataset.setValue(i, "id", "id");
-        }
+        //}
         
 //        dataset.addValue(15, "1", "451");
 //        dataset.addValue(12, "1", "851");
