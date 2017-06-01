@@ -1,10 +1,12 @@
 package com.crunchify.jsp.servlet;
 
 
+import edu.co.sergio.mundo.dao.ColmenaDAO;
 import java.awt.Color;
 import java.awt.Paint;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,10 +41,22 @@ public class BarServlet extends HttpServlet {
 		
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(15, "1", "451");
-        dataset.addValue(12, "1", "851");
-        dataset.addValue(10, "2", "362");
-        dataset.addValue(5,  "2",  "142"); 
+        
+        
+        ColmenaDAO dao = new ColmenaDAO();
+
+        ArrayList datos = dao.consultaBarras();
+        
+        
+        for (int i = 1; i < datos.size(); i+=2) {
+        String id = "id:"+datos.get(i-1);   
+        dataset.setValue(i, "id", "id");
+        }
+        
+//        dataset.addValue(15, "1", "451");
+//        dataset.addValue(12, "1", "851");
+//        dataset.addValue(10, "2", "362");
+//        dataset.addValue(5,  "2",  "142"); 
         
         JFreeChart chart = ChartFactory.createBarChart(
             "Bar Chart Demo 3",       // chart title
