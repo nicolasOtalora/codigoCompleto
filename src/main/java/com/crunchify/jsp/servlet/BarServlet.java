@@ -50,7 +50,7 @@ public class BarServlet extends HttpServlet {
         
         for (int i = 0; i < datos.size(); i++) {
         
-        dataset.setValue((Integer)datos.get(i), "id", "id");
+        dataset.setValue((Integer)datos.get(i), "Colmena "+i, "id");
         }
         
 //        dataset.addValue(15, "1", "451");
