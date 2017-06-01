@@ -50,7 +50,7 @@ public class BarServlet extends HttpServlet {
         
         for (int i = 0; i < datos.size(); i++) {
         
-        dataset.setValue((Integer)datos.get(i), "Colmena "+i, "id");
+        dataset.setValue((Integer)datos.get(i), "Colmena "+i, "id: "+i);
         }
         
 //        dataset.addValue(15, "1", "451");
@@ -59,7 +59,7 @@ public class BarServlet extends HttpServlet {
 //        dataset.addValue(5,  "2",  "142"); 
         
         JFreeChart chart = ChartFactory.createBarChart(
-            "Bar Chart Demo 3",       // chart title
+            "Total de Kilos de Miel por colmena",       // chart title
             "Category",               // domain axis label
             "Value",                  // range axis label
             dataset,                  // data
