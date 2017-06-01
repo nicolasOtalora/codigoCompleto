@@ -54,7 +54,7 @@ public class ColmenaDAO{
         ArrayList datos = null;
 
         try {
-            String query = "select kilos from Colmena groub by id;";
+            String query = "select kilos from Colmena group by id;";
             Connection connection = null;
             try {
                 connection = Conexion.getConnection();
