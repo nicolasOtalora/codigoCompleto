@@ -49,12 +49,12 @@ public class ColmenaDAO{
     public ArrayList consultaBarras() {
 
        
-        
+        int id = 0;
         int kilos = 0;
         ArrayList datos = null;
 
         try {
-            String query = "select kilos from Colmena group by id;";
+            String query = "select id,kilos from Colmena group by id;";
             Connection connection = null;
             try {
                 connection = Conexion.getConnection();
@@ -67,10 +67,11 @@ public class ColmenaDAO{
                 datos = new ArrayList();
 
             while (rs.next()) {
+                id = rs.getInt("id");
 
                 
                 kilos = rs.getInt("kilos");
-                
+                datos.add(id);
                 datos.add(kilos);
             }
 
