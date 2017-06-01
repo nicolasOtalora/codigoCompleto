@@ -59,7 +59,7 @@ public class ChartServlet extends HttpServlet {
         ArrayList datos = dao.consultaTorta();
 
         
-        for (int i = 1; i < datos.size(); i+=2) {
+        for (int i = 0; i < datos.size(); i++) {
 
             int total = (Integer) datos.get(i);
             
@@ -72,7 +72,7 @@ public class ChartServlet extends HttpServlet {
         
         
         
-        JFreeChart chart = ChartFactory.createPieChart("Recursos", dataset, legend, tooltips, urls);
+        JFreeChart chart = ChartFactory.createPieChart("Colmena 1", dataset, legend, tooltips, urls);
 
         chart.setBorderPaint(Color.GREEN);
         chart.setBorderStroke(new BasicStroke(5.0f));
