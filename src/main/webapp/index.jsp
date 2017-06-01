@@ -20,7 +20,8 @@ body {
     
  
    
-    <img src="ChartServlet" /><br/>
+    <img src="ChartServlet" />
+    <img src="BarServlet" /><br/>
     
 </body>
 </html>
