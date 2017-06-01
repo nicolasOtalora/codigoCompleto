@@ -48,8 +48,8 @@ public class ColmenaDAO{
 
     public ArrayList consultaBarras() {
 
-        int id = 0;
-        int total = 0;
+       
+        
         int kilos = 0;
         ArrayList datos = null;
 
@@ -68,9 +68,9 @@ public class ColmenaDAO{
 
             while (rs.next()) {
 
-                id = rs.getInt("id");
+                
                 kilos = rs.getInt("kilos");
-                datos.add(id);
+                
                 datos.add(kilos);
             }
 
