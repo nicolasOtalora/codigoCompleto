@@ -8,7 +8,6 @@ import java.io.OutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -45,7 +44,7 @@ public class BarServlet extends HttpServlet {
         dataset.addValue(10, "2", "362");
         dataset.addValue(5,  "2",  "142"); 
         
- JFreeChart chart = ChartFactory.createBarChart(
+        JFreeChart chart = ChartFactory.createBarChart(
             "Bar Chart Demo 3",       // chart title
             "Category",               // domain axis label
             "Value",                  // range axis label

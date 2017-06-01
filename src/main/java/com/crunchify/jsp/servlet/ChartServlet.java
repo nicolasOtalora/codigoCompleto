@@ -5,10 +5,12 @@
  */
 package com.crunchify.jsp.servlet;
 
+import edu.co.sergio.mundo.dao.ColmenaDAO;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,7 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
@@ -45,39 +48,37 @@ public class ChartServlet extends HttpServlet {
 
 	public JFreeChart getChart() {
 		
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(25.0, "Series 1", "Category 1");   
-        dataset.addValue(34.0, "Series 1", "Category 2");   
-        dataset.addValue(19.0, "Series 2", "Category 1");   
-        dataset.addValue(29.0, "Series 2", "Category 2");   
-        dataset.addValue(41.0, "Series 3", "Category 1");   
-        dataset.addValue(33.0, "Series 3", "Category 2");   
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        //Crear la capa de servicios que se enlace con el DAO
 
-		
-        JFreeChart chart = ChartFactory.createBarChart3D(
-            "3D Bar Chart Demo",      // chart title
-            "Category",               // domain axis label
-            "Value",                  // range axis label
-            dataset,                  // data
-            PlotOrientation.VERTICAL, // orientation
-            true,                     // include legend
-            true,                     // tooltips
-            false                     // urls
-        );
+        boolean legend = true;
+        boolean tooltips = false;
+        boolean urls = false;
 
-        CategoryPlot plot = chart.getCategoryPlot();
-        CategoryAxis axis = plot.getDomainAxis();
-        axis.setCategoryLabelPositions(
-            CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 8.0)
-        );
+        ColmenaDAO dao = new ColmenaDAO();
+        ArrayList datos = dao.consultaTorta();
+
         
-        CategoryItemRenderer renderer = plot.getRenderer();
-        renderer.setItemLabelsVisible(true);
-        BarRenderer r = (BarRenderer) renderer;
-        r.setMaximumBarWidth(0.05);
-        return chart;
+        for (int i = 1; i < datos.size(); i+=2) {
 
-		
-	}
+            int total = (Integer) datos.get(i);
+            
+            double porcentaje = ((total*100)/10);
+            
+            dataset.setValue("Informacion panal Colmena 1", porcentaje);
+
+        }
+        
+        
+        
+        
+        JFreeChart chart = ChartFactory.createPieChart("Recursos", dataset, legend, tooltips, urls);
+
+        chart.setBorderPaint(Color.GREEN);
+        chart.setBorderStroke(new BasicStroke(5.0f));
+        chart.setBorderVisible(true);
+
+        return chart;
+    }
 
 }
